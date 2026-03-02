@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Studio — Créas pub illimitées pour ta marque</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel — remplace TON_PIXEL_ID -->
+  <!--
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','TON_PIXEL_ID');
+    fbq('track','PageView');
+  </script>
+  -->
+
+  <style>
+    :root {
+      --bg: #FDFDFC;
+      --dark: #111;
+      --accent: #1D4ED8;
+      --warm: #D97706;
+      --muted: #71717A;
+      --border: #E4E4E7;
+      --card: #FAFAFA;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 50;
+      padding: 18px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(16px);
+      background: rgba(253,253,252,0.9);
+    }
+
+    .logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--dark); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 100px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+    }
+
+    .hero .intro {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--dark);
+      color: white;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: 0.85; }
+
+    .price-tag {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .price-tag strong {
+      color: var(--dark);
+    }
+
+    /* ── DIVIDER ── */
+    .sep {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .sep hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── TEXT SECTIONS ── */
+    .text-section {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .text-section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .text-section p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .text-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .text-section strong {
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    /* ── STEPS (simple numbered list) ── */
+    .steps-list {
+      list-style: none;
+      counter-reset: step;
+      margin-top: 32px;
+    }
+
+    .steps-list li {
+      counter-increment: step;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .steps-list li::before {
+      content: counter(step);
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: var(--border);
+      flex-shrink: 0;
+      width: 32px;
+    }
+
+    .steps-list li strong {
+      display: block;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .steps-list li span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── WHAT'S INCLUDED ── */
+    .included {
+      margin-top: 32px;
+    }
+
+    .included li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .included li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ── MATH SECTION ── */
+    .math-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 32px;
+    }
+
+    .math-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .math-row.total {
+      border-top: 2px solid var(--dark);
+      margin-top: 12px;
+      padding-top: 16px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .math-row .label { color: var(--muted); }
+    .math-row .value { font-weight: 500; }
+    .math-row.total .label { color: var(--dark); }
+
+    /* ── FAQ (minimal) ── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      cursor: pointer;
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .faq-q span {
+      font-size: 1.3rem;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-top: 12px;
+    }
+
+    .faq-item.open .faq-q span { transform: rotate(45deg); }
+
+    /* ── FINAL CTA ── */
+    .final {
+      padding-top: 80px;
+      padding-bottom: 120px;
+      text-align: center;
+    }
+
+    .final h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .final p {
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 16px; }
+      .hero { padding-top: 120px; }
+      .hero .cta-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Content Studio</a>
+    <a href="#offre" class="nav-link">Voir l'offre →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="reveal">Tes créas pub.<br><em>Générées par l'IA.</em><br>En illimité.</h1>
+    <p class="intro reveal">Un outil qui crée des visuels publicitaires à partir de tes photos produit. Tu uploades, tu génères, tu publies. Pas d'abonnement.</p>
+
+    <!-- Demo video -->
+    <div class="reveal" style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16/9; background: #000;">
+      <script src="https://fast.wistia.com/player.js" async></script>
+      <script src="https://fast.wistia.com/embed/d96zivucky.js" async type="module"></script>
+      <style>
+        wistia-player[media-id='d96zivucky'] { width: 100%; height: 100%; display: block; }
+      </style>
+      <wistia-player media-id="d96zivucky"></wistia-player>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="https://calendly.com/valentin-checks-studio/30min" class="btn" onclick="typeof fbq!=='undefined'&&fbq('track','Lead')">Réserver un appel</a>
+      <span class="price-tag"><strong>500€</strong> une fois · accès à vie</span>
+    </div>
+  </div>
+
+  <div class="sep"><hr></div>
+
+  <!-- LE PROBLÈME (en texte simple) -->
+  <section class="text-section reveal">
+    <h2>Le problème</h2>
+    <p>Pour que tes pubs Meta fonctionnent, il faut du <strong>volume de créas</strong>. Tester 5 visuels par semaine, c'est pas assez. Il en faut 30, 50, 100 pour trouver ceux qui convertissent.</p>
+    <p>Sauf qu'un graphiste freelance, c'est <strong>500 à 2000€/mois</strong> pour un volume limité. Et tu attends 3 jours entre chaque lot. Pendant ce temps, tes concurrents testent plus vite que toi.</p>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- LA SOLUTION -->
+  <section class="text-section reveal">
+    <h2>La solution</h2>
+    <p>Content Studio est un outil web privé. Tu y accèdes avec ton propre lien. Il utilise l'IA pour <strong>générer des créas publicitaires</strong> à partir de tes photos produit, dans tous les formats (feed, story, réels).</p>
+    <p>L'outil analyse ton site, comprend ta marque, et génère des prompts publicitaires optimisés. Tu cliques sur <strong>Générer</strong>, et il produit des visuels — un par un ou en rafale.</p>
+    <p>Photos et vidéos. Avec ou sans texte. Tu sélectionnes tes préférés, tu les exportes en ZIP, tu les publies.</p>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="text-section reveal">
+    <h2>Comment ça marche</h2>
+    <ol class="steps-list">
+      <li>
+        <div>
+          <strong>Colle l'URL de ton site</strong>
+          <span>L'IA analyse ta marque, tes produits, ton positionnement.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Upload tes photos produit</strong>
+          <span>Glisse tes images. L'outil les intègre dans chaque créa.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Génère en masse</strong>
+          <span>L'outil crée des dizaines de visuels. Tu gardes les meilleurs.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Exporte et publie</strong>
+          <span>ZIP, favoris, éditeur de texte intégré. Direct dans tes campagnes.</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- CE QUE TU REÇOIS -->
+  <section class="text-section reveal" id="offre">
+    <h2>Ce que tu reçois pour 500€</h2>
+    <p>Un paiement, accès permanent. Pas d'abonnement, pas de surprise.</p>
+    <ul class="included">
+      <li>Ton instance privée de Content Studio (URL dédiée)</li>
+      <li>Configuration complète par mes soins</li>
+      <li>Génération de créas photos illimitée</li>
+      <li>Génération de vidéos publicitaires</li>
+      <li>Analyse de marque automatique</li>
+      <li>Prompts optimisés pour Meta, TikTok, Instagram</li>
+      <li>Éditeur de texte intégré (ajout d'accroches sur les images)</li>
+      <li>Export ZIP + favoris sauvegardés dans le cloud</li>
+      <li>Tous les formats (1:1, 9:16, 4:5, 16:9…)</li>
+      <li>Mises à jour incluses</li>
+      <li>Support email</li>
+    </ul>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- LE CALCUL -->
+  <section class="text-section reveal">
+    <h2>Le calcul</h2>
+    <p>Soyons transparents sur les coûts.</p>
+    <div class="math-box">
+      <div class="math-row">
+        <span class="label">Content Studio (une fois)</span>
+        <span class="value">500€</span>
+      </div>
+      <div class="math-row">
+        <span class="label">Coût par image générée (API Google)</span>
+        <span class="value">~0.07€</span>
+      </div>
+      <div class="math-row">
+        <span class="label">100 créas / mois</span>
+        <span class="value">~7€ / mois</span>
+      </div>
+      <div class="math-row">
+        <span class="label">500 créas / mois</span>
+        <span class="value">~35€ / mois</span>
+      </div>
+      <div class="math-row total">
+        <span class="label">Vs. un graphiste freelance</span>
+        <span class="value">500–2000€ / mois</span>
+      </div>
+    </div>
+    <p style="margin-top: 16px; font-size: 0.9rem;">Les coûts API sont payés directement à Google via ta propre clé. Je n'ai aucune marge dessus.</p>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- FAQ -->
+  <section class="text-section">
+    <h2 class="reveal">Questions</h2>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q">J'ai besoin de compétences techniques ? <span>+</span></div>
+      <div class="faq-a">Non. Je m'occupe de tout configurer. Tu reçois un lien, tu te connectes, c'est prêt. L'interface est faite pour des e-commerçants, pas des développeurs.</div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q">C'est quoi la qualité des images ? <span>+</span></div>
+      <div class="faq-a">L'outil utilise les derniers modèles de génération d'images disponibles, avec une résolution jusqu'à 4K. Les prompts sont pensés pour les codes publicitaires Meta et TikTok. Ce n'est pas du stock photo — chaque créa est unique et basée sur tes vrais produits.</div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Ça remplace un graphiste ? <span>+</span></div>
+      <div class="faq-a">Pour le volume de test, oui. Content Studio génère des dizaines de créas en quelques minutes, ce qu'un graphiste met des jours à faire. Pour du branding très spécifique ou du packaging, tu garderas probablement ton graphiste. Mais pour alimenter tes campagnes au quotidien, l'outil suffit.</div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Et si ça ne me convient pas ? <span>+</span></div>
+      <div class="faq-a">On fait un appel de 15 minutes avant. Je te montre l'outil, tu vois si ça correspond à ton besoin. Pas de mauvaise surprise.</div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Combien de temps pour être opérationnel ? <span>+</span></div>
+      <div class="faq-a">24 à 48h après notre appel. Configuration incluse.</div>
+    </div>
+  </section>
+
+  <div class="sep"><hr></div>
+
+  <!-- FINAL -->
+  <section class="final reveal">
+    <h2>On en parle ?</h2>
+    <p>15 minutes, je te montre l'outil en direct sur ta marque. Sans engagement.</p>
+    <a href="https://calendly.com/valentin-checks-studio/30min" class="btn" onclick="typeof fbq!=='undefined'&&fbq('track','Lead')">Réserver un appel</a>
+  </section>
+
+  <footer>
+    © 2026 Content Studio
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
