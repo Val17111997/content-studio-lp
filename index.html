@@ -260,6 +260,31 @@
     .math-row .value { font-weight: 500; }
     .math-row.total .label { color: var(--dark); }
 
+    /* ── GALLERY ── */
+    .gallery {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gallery-col img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-col img:hover {
+      transform: scale(1.02);
+    }
+
     /* ── FAQ (minimal) ── */
     .faq-item {
       border-bottom: 1px solid var(--border);
@@ -342,14 +367,15 @@
       nav { padding: 14px 16px; }
       .hero { padding-top: 120px; }
       .hero .cta-row { flex-direction: column; align-items: flex-start; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#" class="logo">Content Studio</a>
-    <a href="#offre" class="nav-link">Voir l'offre →</a>
+    <a href="#" class="logo"><img src="logo.png" alt="Logo" style="height: 24px; vertical-align: middle; margin-right: 8px;">Content Studio</a>
+    <a href="https://calendly.com/valentin-checks-studio/30min" class="nav-link" onclick="typeof fbq!=='undefined'&&fbq('track','Lead')">Réserver un appel →</a>
   </nav>
 
   <!-- HERO -->
@@ -390,6 +416,28 @@
     <p>Content Studio est un outil web privé. Tu y accèdes avec ton propre lien. Il utilise l'IA pour <strong>générer des créas publicitaires</strong> à partir de tes photos produit, dans tous les formats (feed, story, réels).</p>
     <p>L'outil analyse ton site, comprend ta marque, et génère des prompts publicitaires optimisés. Tu cliques sur <strong>Générer</strong>, et il produit des visuels — un par un ou en rafale.</p>
     <p>Photos et vidéos. Avec ou sans texte. Tu sélectionnes tes préférés, tu les exportes en ZIP, tu les publies.</p>
+  </section>
+
+  <!-- EXEMPLES DE CRÉAS -->
+  <section class="text-section reveal" style="max-width: 960px; padding-top: 0;">
+    <div class="gallery">
+      <div class="gallery-col">
+        <img src="favori-1.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-4.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-7.png" alt="Créa publicitaire" loading="lazy">
+      </div>
+      <div class="gallery-col">
+        <img src="favori-2.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-5.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-8.png" alt="Créa publicitaire" loading="lazy">
+      </div>
+      <div class="gallery-col">
+        <img src="favori-3.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-6.png" alt="Créa publicitaire" loading="lazy">
+        <img src="favori-9.png" alt="Créa publicitaire" loading="lazy">
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 24px; font-size: 0.9rem; color: var(--muted);">Memes, lifestyle, UGC, comparatifs, scientifique… L'IA adapte le style au brief.</p>
   </section>
 
   <div class="sep"><hr></div>
@@ -444,37 +492,6 @@
       <li>Mises à jour incluses</li>
       <li>Support email</li>
     </ul>
-  </section>
-
-  <div class="sep"><hr></div>
-
-  <!-- LE CALCUL -->
-  <section class="text-section reveal">
-    <h2>Le calcul</h2>
-    <p>Soyons transparents sur les coûts.</p>
-    <div class="math-box">
-      <div class="math-row">
-        <span class="label">Content Studio (une fois)</span>
-        <span class="value">500€</span>
-      </div>
-      <div class="math-row">
-        <span class="label">Coût par image générée (API Google)</span>
-        <span class="value">~0.07€</span>
-      </div>
-      <div class="math-row">
-        <span class="label">100 créas / mois</span>
-        <span class="value">~7€ / mois</span>
-      </div>
-      <div class="math-row">
-        <span class="label">500 créas / mois</span>
-        <span class="value">~35€ / mois</span>
-      </div>
-      <div class="math-row total">
-        <span class="label">Vs. un graphiste freelance</span>
-        <span class="value">500–2000€ / mois</span>
-      </div>
-    </div>
-    <p style="margin-top: 16px; font-size: 0.9rem;">Les coûts API sont payés directement à Google via ta propre clé. Je n'ai aucune marge dessus.</p>
   </section>
 
   <div class="sep"><hr></div>
